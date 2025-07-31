@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lineup-now</title>
+    <meta name="description" content="Election Appointment System">
+    <meta name="author" content="">
+
+    <meta property="og:title" content="lineup-now">
+    <meta property="og:description" content="Election Appointment System">
+    <meta property="og:type" content="website">
+    <meta property="og:image"
+          content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7b3ca589-a26e-4201-935b-bf4334e0bd8f/id-preview-822aa1e1--94cf565f-a4a6-4533-b53b-1fb3d96af668.lovable.app-1753882629466.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@lovable_dev">
+    <meta name="twitter:image"
+          content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/7b3ca589-a26e-4201-935b-bf4334e0bd8f/id-preview-822aa1e1--94cf565f-a4a6-4533-b53b-1fb3d96af668.lovable.app-1753882629466.png">
+    <script type="module" crossorigin="" src="/assets/js/index.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/css/index.css">
+
+    <style type="text/css">:where(html[dir="ltr"]), :where([data-sonner-toaster][dir="ltr"]) {
+        --toast-icon-margin-start: -3px;
+        --toast-icon-margin-end: 4px;
+        --toast-svg-margin-start: -1px;
+        --toast-svg-margin-end: 0px;
+        --toast-button-margin-start: auto;
+        --toast-button-margin-end: 0;
+        --toast-close-button-start: 0;
+        --toast-close-button-end: unset;
+        --toast-close-button-transform: translate(-35%, -35%)
+    }
+
+    :where(html[dir="rtl"]), :where([data-sonner-toaster][dir="rtl"]) {
+        --toast-icon-margin-start: 4px;
+        --toast-icon-margin-end: -3px;
+        --toast-svg-margin-start: 0px;
+        --toast-svg-margin-end: -1px;
+        --toast-button-margin-start: 0;
+        --toast-button-margin-end: auto;
+        --toast-close-button-start: unset;
+        --toast-close-button-end: 0;
+        --toast-close-button-transform: translate(35%, -35%)
+    }
+
+    :where([data-sonner-toaster]) {
+        position: fixed;
+        width: var(--width);
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+        --gray1: hsl(0, 0%, 99%);
+        --gray2: hsl(0, 0%, 97.3%);
+        --gray3: hsl(0, 0%, 95.1%);
+        --gray4: hsl(0, 0%, 93%);
+        --gray5: hsl(0, 0%, 90.9%);
+        --gray6: hsl(0, 0%, 88.7%);
+        --gray7: hsl(0, 0%, 85.8%);
+        --gray8: hsl(0, 0%, 78%);
+        --gray9: hsl(0, 0%, 56.1%);
+        --gray10: hsl(0, 0%, 52.3%);
+        --gray11: hsl(0, 0%, 43.5%);
+        --gray12: hsl(0, 0%, 9%);
+        --border-radius: 8px;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        outline: none;
+        z-index: 999999999
+    }
+
+    :where([data-sonner-toaster][data-x-position="right"]) {
+        right: max(var(--offset), env(safe-area-inset-right))
+    }
+
+    :where([data-sonner-toaster][data-x-position="left"]) {
+        left: max(var(--offset), env(safe-area-inset-left))
+    }
+
+    :where([data-sonner-toaster][data-x-position="center"]) {
+        left: 50%;
+        transform: translate(-50%)
+    }
+
+    :where([data-sonner-toaster][data-y-position="top"]) {
+        top: max(var(--offset), env(safe-area-inset-top))
+    }
+
+    :where([data-sonner-toaster][data-y-position="bottom"]) {
+        bottom: max(var(--offset), env(safe-area-inset-bottom))
+    }
+
+    :where([data-sonner-toast]) {
+        --y: translateY(100%);
+        --lift-amount: calc(var(--lift) * var(--gap));
+        z-index: var(--z-index);
+        position: absolute;
+        opacity: 0;
+        transform: var(--y);
+        filter: blur(0);
+        touch-action: none;
+        transition: transform .4s, opacity .4s, height .4s, box-shadow .2s;
+        box-sizing: border-box;
+        outline: none;
+        overflow-wrap: anywhere
+    }
+
+    :where([data-sonner-toast][data-styled="true"]) {
+        padding: 16px;
+        background: var(--normal-bg);
+        border: 1px solid var(--normal-border);
+        color: var(--normal-text);
+        border-radius: var(--border-radius);
+        box-shadow: 0 4px 12px #0000001a;
+        width: var(--width);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 6px
+    }
+
+    :where([data-sonner-toast]:focus-visible) {
+        box-shadow: 0 4px 12px #0000001a, 0 0 0 2px #0003
+    }
+
+    :where([data-sonner-toast][data-y-position="top"]) {
+        top: 0;
+        --y: translateY(-100%);
+        --lift: 1;
+        --lift-amount: calc(1 * var(--gap))
+    }
+
+    :where([data-sonner-toast][data-y-position="bottom"]) {
+        bottom: 0;
+        --y: translateY(100%);
+        --lift: -1;
+        --lift-amount: calc(var(--lift) * var(--gap))
+    }
+
+    :where([data-sonner-toast]) :where([data-description]) {
+        font-weight: 400;
+        line-height: 1.4;
+        color: inherit
+    }
+
+    :where([data-sonner-toast]) :where([data-title]) {
+        font-weight: 500;
+        line-height: 1.5;
+        color: inherit
+    }
+
+    :where([data-sonner-toast]) :where([data-icon]) {
+        display: flex;
+        height: 16px;
+        width: 16px;
+        position: relative;
+        justify-content: flex-start;
+        align-items: center;
+        flex-shrink: 0;
+        margin-left: var(--toast-icon-margin-start);
+        margin-right: var(--toast-icon-margin-end)
+    }
+
+    :where([data-sonner-toast][data-promise="true"]) :where([data-icon]) > svg {
+        opacity: 0;
+        transform: scale(.8);
+        transform-origin: center;
+        animation: sonner-fade-in .3s ease forwards
+    }
+
+    :where([data-sonner-toast]) :where([data-icon]) > * {
+        flex-shrink: 0
+    }
+
+    :where([data-sonner-toast]) :where([data-icon]) svg {
+        margin-left: var(--toast-svg-margin-start);
+        margin-right: var(--toast-svg-margin-end)
+    }
+
+    :where([data-sonner-toast]) :where([data-content]) {
+        display: flex;
+        flex-direction: column;
+        gap: 2px
+    }
+
+    [data-sonner-toast][data-styled=true] [data-button] {
+        border-radius: 4px;
+        padding-left: 8px;
+        padding-right: 8px;
+        height: 24px;
+        font-size: 12px;
+        color: var(--normal-bg);
+        background: var(--normal-text);
+        margin-left: var(--toast-button-margin-start);
+        margin-right: var(--toast-button-margin-end);
+        border: none;
+        cursor: pointer;
+        outline: none;
+        display: flex;
+        align-items: center;
+        flex-shrink: 0;
+        transition: opacity .4s, box-shadow .2s
+    }
+
+    :where([data-sonner-toast]) :where([data-button]):focus-visible {
+        box-shadow: 0 0 0 2px #0006
+    }
+
+    :where([data-sonner-toast]) :where([data-button]):first-of-type {
+        margin-left: var(--toast-button-margin-start);
+        margin-right: var(--toast-button-margin-end)
+    }
+
+    :where([data-sonner-toast]) :where([data-cancel]) {
+        color: var(--normal-text);
+        background: rgba(0, 0, 0, .08)
+    }
+
+    :where([data-sonner-toast][data-theme="dark"]) :where([data-cancel]) {
+        background: rgba(255, 255, 255, .3)
+    }
+
+    :where([data-sonner-toast]) :where([data-close-button]) {
+        position: absolute;
+        left: var(--toast-close-button-start);
+        right: var(--toast-close-button-end);
+        top: 0;
+        height: 20px;
+        width: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        background: var(--gray1);
+        color: var(--gray12);
+        border: 1px solid var(--gray4);
+        transform: var(--toast-close-button-transform);
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 1;
+        transition: opacity .1s, background .2s, border-color .2s
+    }
+
+    :where([data-sonner-toast]) :where([data-close-button]):focus-visible {
+        box-shadow: 0 4px 12px #0000001a, 0 0 0 2px #0003
+    }
+
+    :where([data-sonner-toast]) :where([data-disabled="true"]) {
+        cursor: not-allowed
+    }
+
+    :where([data-sonner-toast]):hover :where([data-close-button]):hover {
+        background: var(--gray2);
+        border-color: var(--gray5)
+    }
+
+    :where([data-sonner-toast][data-swiping="true"]):before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 100%;
+        z-index: -1
+    }
+
+    :where([data-sonner-toast][data-y-position="top"][data-swiping="true"]):before {
+        bottom: 50%;
+        transform: scaleY(3) translateY(50%)
+    }
+
+    :where([data-sonner-toast][data-y-position="bottom"][data-swiping="true"]):before {
+        top: 50%;
+        transform: scaleY(3) translateY(-50%)
+    }
+
+    :where([data-sonner-toast][data-swiping="false"][data-removed="true"]):before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        transform: scaleY(2)
+    }
+
+    :where([data-sonner-toast]):after {
+        content: "";
+        position: absolute;
+        left: 0;
+        height: calc(var(--gap) + 1px);
+        bottom: 100%;
+        width: 100%
+    }
+
+    :where([data-sonner-toast][data-mounted="true"]) {
+        --y: translateY(0);
+        opacity: 1
+    }
+
+    :where([data-sonner-toast][data-expanded="false"][data-front="false"]) {
+        --scale: var(--toasts-before) *.05 +1;
+        --y: translateY(calc(var(--lift-amount) * var(--toasts-before))) scale(calc(-1 * var(--scale)));
+        height: var(--front-toast-height)
+    }
+
+    :where([data-sonner-toast]) > * {
+        transition: opacity .4s
+    }
+
+    :where([data-sonner-toast][data-expanded="false"][data-front="false"][data-styled="true"]) > * {
+        opacity: 0
+    }
+
+    :where([data-sonner-toast][data-visible="false"]) {
+        opacity: 0;
+        pointer-events: none
+    }
+
+    :where([data-sonner-toast][data-mounted="true"][data-expanded="true"]) {
+        --y: translateY(calc(var(--lift) * var(--offset)));
+        height: var(--initial-height)
+    }
+
+    :where([data-sonner-toast][data-removed="true"][data-front="true"][data-swipe-out="false"]) {
+        --y: translateY(calc(var(--lift) * -100%));
+        opacity: 0
+    }
+
+    :where([data-sonner-toast][data-removed="true"][data-front="false"][data-swipe-out="false"][data-expanded="true"]) {
+        --y: translateY(calc(var(--lift) * var(--offset) + var(--lift) * -100%));
+        opacity: 0
+    }
+
+    :where([data-sonner-toast][data-removed="true"][data-front="false"][data-swipe-out="false"][data-expanded="false"]) {
+        --y: translateY(40%);
+        opacity: 0;
+        transition: transform .5s, opacity .2s
+    }
+
+    :where([data-sonner-toast][data-removed="true"][data-front="false"]):before {
+        height: calc(var(--initial-height) + 20%)
+    }
+
+    [data-sonner-toast][data-swiping=true] {
+        transform: var(--y) translateY(var(--swipe-amount, 0px));
+        transition: none
+    }
+
+    [data-sonner-toast][data-swipe-out=true][data-y-position=bottom], [data-sonner-toast][data-swipe-out=true][data-y-position=top] {
+        animation: swipe-out .2s ease-out forwards
+    }
+
+    @keyframes swipe-out {
+        0% {
+            transform: translateY(calc(var(--lift) * var(--offset) + var(--swipe-amount)));
+            opacity: 1
+        }
+        to {
+            transform: translateY(calc(var(--lift) * var(--offset) + var(--swipe-amount) + var(--lift) * -100%));
+            opacity: 0
+        }
+    }
+
+    @media (max-width: 600px) {
+        [data-sonner-toaster] {
+            position: fixed;
+            --mobile-offset: 16px;
+            right: var(--mobile-offset);
+            left: var(--mobile-offset);
+            width: 100%
+        }
+
+        [data-sonner-toaster] [data-sonner-toast] {
+            left: 0;
+            right: 0;
+            width: calc(100% - var(--mobile-offset) * 2)
+        }
+
+        [data-sonner-toaster][data-x-position=left] {
+            left: var(--mobile-offset)
+        }
+
+        [data-sonner-toaster][data-y-position=bottom] {
+            bottom: 20px
+        }
+
+        [data-sonner-toaster][data-y-position=top] {
+            top: 20px
+        }
+
+        [data-sonner-toaster][data-x-position=center] {
+            left: var(--mobile-offset);
+            right: var(--mobile-offset);
+            transform: none
+        }
+    }
+
+    [data-sonner-toaster][data-theme=light] {
+        --normal-bg: #fff;
+        --normal-border: var(--gray4);
+        --normal-text: var(--gray12);
+        --success-bg: hsl(143, 85%, 96%);
+        --success-border: hsl(145, 92%, 91%);
+        --success-text: hsl(140, 100%, 27%);
+        --info-bg: hsl(208, 100%, 97%);
+        --info-border: hsl(221, 91%, 91%);
+        --info-text: hsl(210, 92%, 45%);
+        --warning-bg: hsl(49, 100%, 97%);
+        --warning-border: hsl(49, 91%, 91%);
+        --warning-text: hsl(31, 92%, 45%);
+        --error-bg: hsl(359, 100%, 97%);
+        --error-border: hsl(359, 100%, 94%);
+        --error-text: hsl(360, 100%, 45%)
+    }
+
+    [data-sonner-toaster][data-theme=light] [data-sonner-toast][data-invert=true] {
+        --normal-bg: #000;
+        --normal-border: hsl(0, 0%, 20%);
+        --normal-text: var(--gray1)
+    }
+
+    [data-sonner-toaster][data-theme=dark] [data-sonner-toast][data-invert=true] {
+        --normal-bg: #fff;
+        --normal-border: var(--gray3);
+        --normal-text: var(--gray12)
+    }
+
+    [data-sonner-toaster][data-theme=dark] {
+        --normal-bg: #000;
+        --normal-border: hsl(0, 0%, 20%);
+        --normal-text: var(--gray1);
+        --success-bg: hsl(150, 100%, 6%);
+        --success-border: hsl(147, 100%, 12%);
+        --success-text: hsl(150, 86%, 65%);
+        --info-bg: hsl(215, 100%, 6%);
+        --info-border: hsl(223, 100%, 12%);
+        --info-text: hsl(216, 87%, 65%);
+        --warning-bg: hsl(64, 100%, 6%);
+        --warning-border: hsl(60, 100%, 12%);
+        --warning-text: hsl(46, 87%, 65%);
+        --error-bg: hsl(358, 76%, 10%);
+        --error-border: hsl(357, 89%, 16%);
+        --error-text: hsl(358, 100%, 81%)
+    }
+
+    [data-rich-colors=true][data-sonner-toast][data-type=success], [data-rich-colors=true][data-sonner-toast][data-type=success] [data-close-button] {
+        background: var(--success-bg);
+        border-color: var(--success-border);
+        color: var(--success-text)
+    }
+
+    [data-rich-colors=true][data-sonner-toast][data-type=info], [data-rich-colors=true][data-sonner-toast][data-type=info] [data-close-button] {
+        background: var(--info-bg);
+        border-color: var(--info-border);
+        color: var(--info-text)
+    }
+
+    [data-rich-colors=true][data-sonner-toast][data-type=warning], [data-rich-colors=true][data-sonner-toast][data-type=warning] [data-close-button] {
+        background: var(--warning-bg);
+        border-color: var(--warning-border);
+        color: var(--warning-text)
+    }
+
+    [data-rich-colors=true][data-sonner-toast][data-type=error], [data-rich-colors=true][data-sonner-toast][data-type=error] [data-close-button] {
+        background: var(--error-bg);
+        border-color: var(--error-border);
+        color: var(--error-text)
+    }
+
+    .sonner-loading-wrapper {
+        --size: 16px;
+        height: var(--size);
+        width: var(--size);
+        position: absolute;
+        inset: 0;
+        z-index: 10
+    }
+
+    .sonner-loading-wrapper[data-visible=false] {
+        transform-origin: center;
+        animation: sonner-fade-out .2s ease forwards
+    }
+
+    .sonner-spinner {
+        position: relative;
+        top: 50%;
+        left: 50%;
+        height: var(--size);
+        width: var(--size)
+    }
+
+    .sonner-loading-bar {
+        animation: sonner-spin 1.2s linear infinite;
+        background: var(--gray11);
+        border-radius: 6px;
+        height: 8%;
+        left: -10%;
+        position: absolute;
+        top: -3.9%;
+        width: 24%
+    }
+
+    .sonner-loading-bar:nth-child(1) {
+        animation-delay: -1.2s;
+        transform: rotate(.0001deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(2) {
+        animation-delay: -1.1s;
+        transform: rotate(30deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(3) {
+        animation-delay: -1s;
+        transform: rotate(60deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(4) {
+        animation-delay: -.9s;
+        transform: rotate(90deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(5) {
+        animation-delay: -.8s;
+        transform: rotate(120deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(6) {
+        animation-delay: -.7s;
+        transform: rotate(150deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(7) {
+        animation-delay: -.6s;
+        transform: rotate(180deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(8) {
+        animation-delay: -.5s;
+        transform: rotate(210deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(9) {
+        animation-delay: -.4s;
+        transform: rotate(240deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(10) {
+        animation-delay: -.3s;
+        transform: rotate(270deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(11) {
+        animation-delay: -.2s;
+        transform: rotate(300deg) translate(146%)
+    }
+
+    .sonner-loading-bar:nth-child(12) {
+        animation-delay: -.1s;
+        transform: rotate(330deg) translate(146%)
+    }
+
+    @keyframes sonner-fade-in {
+        0% {
+            opacity: 0;
+            transform: scale(.8)
+        }
+        to {
+            opacity: 1;
+            transform: scale(1)
+        }
+    }
+
+    @keyframes sonner-fade-out {
+        0% {
+            opacity: 1;
+            transform: scale(1)
+        }
+        to {
+            opacity: 0;
+            transform: scale(.8)
+        }
+    }
+
+    @keyframes sonner-spin {
+        0% {
+            opacity: 1
+        }
+        to {
+            opacity: .15
+        }
+    }
+
+    @media (prefers-reduced-motion) {
+        [data-sonner-toast], [data-sonner-toast] > *, .sonner-loading-bar {
+            transition: none !important;
+            animation: none !important
+        }
+    }
+
+    .sonner-loader {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transform-origin: center;
+        transition: opacity .2s, transform .2s
+    }
+
+    .sonner-loader[data-visible=false] {
+        opacity: 0;
+        transform: scale(.8) translate(-50%, -50%)
+    }
+    </style>
+</head>
+
+<body>
+<div id="root">
+    <div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;">
+        <ol tabindex="-1" data-lov-id="src/components/ui/toaster.tsx:30:6" data-lov-name="ToastViewport"
+            data-component-path="src/components/ui/toaster.tsx" data-component-line="30"
+            data-component-file="toaster.tsx" data-component-name="ToastViewport" data-component-content="%7B%7D"
+            class="fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse p-4 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col md:max-w-[420px]"></ol>
+    </div>
+    <div data-lov-id="src/pages/CustomerView.tsx:27:4" data-lov-name="div"
+         data-component-path="src/pages/CustomerView.tsx" data-component-line="27"
+         data-component-file="CustomerView.tsx" data-component-name="div"
+         data-component-content="%7B%22className%22%3A%22min-h-screen%20bg-background%20p-2%20sm%3Ap-4%22%7D"
+         class="min-h-screen bg-background p-2 sm:p-4">
+        <div data-lov-id="src/pages/CustomerView.tsx:28:6" data-lov-name="div"
+             data-component-path="src/pages/CustomerView.tsx" data-component-line="28"
+             data-component-file="CustomerView.tsx" data-component-name="div"
+             data-component-content="%7B%22className%22%3A%22max-w-4xl%20mx-auto%20space-y-4%20sm%3Aspace-y-6%22%7D"
+             class="max-w-4xl mx-auto space-y-4 sm:space-y-6">
+            <div data-lov-id="src/pages/CustomerView.tsx:29:8" data-lov-name="div"
+                 data-component-path="src/pages/CustomerView.tsx" data-component-line="29"
+                 data-component-file="CustomerView.tsx" data-component-name="div"
+                 data-component-content="%7B%22className%22%3A%22text-center%20mb-6%20sm%3Amb-8%20px-4%22%7D"
+                 class="text-center mb-6 sm:mb-8 px-4"><h1 data-lov-id="src/pages/CustomerView.tsx:30:10"
+                                                           data-lov-name="h1"
+                                                           data-component-path="src/pages/CustomerView.tsx"
+                                                           data-component-line="30"
+                                                           data-component-file="CustomerView.tsx"
+                                                           data-component-name="h1"
+                                                           data-component-content="%7B%22text%22%3A%22Election%20Appointment%20System%22%2C%22className%22%3A%22text-2xl%20sm%3Atext-3xl%20font-bold%20text-foreground%22%7D"
+                                                           class="text-2xl sm:text-3xl font-bold text-foreground">
+                Election Appointment System</h1>
+                <p data-lov-id="src/pages/CustomerView.tsx:31:10" data-lov-name="p"
+                   data-component-path="src/pages/CustomerView.tsx" data-component-line="31"
+                   data-component-file="CustomerView.tsx" data-component-name="p"
+                   data-component-content="%7B%22text%22%3A%22Book%20your%20election%20appointment%20and%20track%20your%20status%22%2C%22className%22%3A%22text-sm%20sm%3Atext-base%20text-muted-foreground%20mt-2%22%7D"
+                   class="text-sm sm:text-base text-muted-foreground mt-2">Book your election appointment and track your
+                    status</p></div>
+            <div data-lov-id="src/components/QueueDisplay.tsx:11:4" data-lov-name="div"
+                 data-component-path="src/components/QueueDisplay.tsx" data-component-line="11"
+                 data-component-file="QueueDisplay.tsx" data-component-name="div"
+                 data-component-content="%7B%22className%22%3A%22bg-gradient-display%20text-white%20p-4%20sm%3Ap-6%20md%3Ap-8%20rounded-lg%20shadow-display%22%7D"
+                 class="bg-gradient-display text-white p-4 sm:p-6 md:p-8 rounded-lg shadow-display">
+                <div data-lov-id="src/components/QueueDisplay.tsx:12:6" data-lov-name="div"
+                     data-component-path="src/components/QueueDisplay.tsx" data-component-line="12"
+                     data-component-file="QueueDisplay.tsx" data-component-name="div"
+                     data-component-content="%7B%22className%22%3A%22text-center%20space-y-4%20sm%3Aspace-y-6%22%7D"
+                     class="text-center space-y-4 sm:space-y-6">
+                    <div data-lov-id="src/components/QueueDisplay.tsx:13:8" data-lov-name="div"
+                         data-component-path="src/components/QueueDisplay.tsx" data-component-line="13"
+                         data-component-file="QueueDisplay.tsx" data-component-name="div"
+                         data-component-content="%7B%7D"><h2 data-lov-id="src/components/QueueDisplay.tsx:14:10"
+                                                             data-lov-name="h2"
+                                                             data-component-path="src/components/QueueDisplay.tsx"
+                                                             data-component-line="14"
+                                                             data-component-file="QueueDisplay.tsx"
+                                                             data-component-name="h2"
+                                                             data-component-content="%7B%22text%22%3A%22Now%20Serving%22%2C%22className%22%3A%22text-lg%20sm%3Atext-xl%20md%3Atext-2xl%20font-semibold%20mb-2%20opacity-90%22%7D"
+                                                             class="text-lg sm:text-xl md:text-2xl font-semibold mb-2 opacity-90">
+                        Now Serving</h2>
+                        <div data-lov-id="src/components/QueueDisplay.tsx:15:10" data-lov-name="div"
+                             data-component-path="src/components/QueueDisplay.tsx" data-component-line="15"
+                             data-component-file="QueueDisplay.tsx" data-component-name="div"
+                             data-component-content="%7B%22className%22%3A%22bg-white%2F10%20backdrop-blur-sm%20rounded-lg%20p-4%20sm%3Ap-6%20border%20border-white%2F20%22%7D"
+                             class="bg-white/10 backdrop-blur-sm rounded-lg p-4 sm:p-6 border border-white/20"><span
+                            data-lov-id="src/components/QueueDisplay.tsx:16:12" data-lov-name="span"
+                            data-component-path="src/components/QueueDisplay.tsx" data-component-line="16"
+                            data-component-file="QueueDisplay.tsx" data-component-name="span"
+                            data-component-content="%7B%22className%22%3A%22text-3xl%20sm%3Atext-5xl%20md%3Atext-6xl%20font-bold%20tracking-wider%22%7D"
+                            class="text-3xl sm:text-5xl md:text-6xl font-bold tracking-wider">A005</span></div>
+                    </div>
+                    <div data-lov-id="src/components/QueueDisplay.tsx:20:8" data-lov-name="div"
+                         data-component-path="src/components/QueueDisplay.tsx" data-component-line="20"
+                         data-component-file="QueueDisplay.tsx" data-component-name="div"
+                         data-component-content="%7B%22className%22%3A%22grid%20grid-cols-2%20gap-2%20sm%3Agap-4%20pt-2%20sm%3Apt-4%22%7D"
+                         class="grid grid-cols-2 gap-2 sm:gap-4 pt-2 sm:pt-4">
+                        <div data-lov-id="src/components/QueueDisplay.tsx:21:10" data-lov-name="div"
+                             data-component-path="src/components/QueueDisplay.tsx" data-component-line="21"
+                             data-component-file="QueueDisplay.tsx" data-component-name="div"
+                             data-component-content="%7B%22className%22%3A%22bg-white%2F5%20backdrop-blur-sm%20rounded-lg%20p-3%20sm%3Ap-4%20border%20border-white%2F10%22%7D"
+                             class="bg-white/5 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/10">
+                            <div data-lov-id="src/components/QueueDisplay.tsx:22:12" data-lov-name="div"
+                                 data-component-path="src/components/QueueDisplay.tsx" data-component-line="22"
+                                 data-component-file="QueueDisplay.tsx" data-component-name="div"
+                                 data-component-content="%7B%22className%22%3A%22flex%20items-center%20justify-center%20gap-1%20sm%3Agap-2%20mb-2%22%7D"
+                                 class="flex items-center justify-center gap-1 sm:gap-2 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="lucide lucide-users w-4 h-4 sm:w-5 sm:h-5 opacity-80"
+                                     data-lov-id="src/components/QueueDisplay.tsx:23:14" data-lov-name="Users"
+                                     data-component-path="src/components/QueueDisplay.tsx" data-component-line="23"
+                                     data-component-file="QueueDisplay.tsx" data-component-name="Users"
+                                     data-component-content="%7B%22className%22%3A%22w-4%20h-4%20sm%3Aw-5%20sm%3Ah-5%20opacity-80%22%7D">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                                <span data-lov-id="src/components/QueueDisplay.tsx:24:14" data-lov-name="span"
+                                      data-component-path="src/components/QueueDisplay.tsx" data-component-line="24"
+                                      data-component-file="QueueDisplay.tsx" data-component-name="span"
+                                      data-component-content="%7B%22text%22%3A%22In%20Queue%22%2C%22className%22%3A%22text-xs%20sm%3Atext-sm%20opacity-80%22%7D"
+                                      class="text-xs sm:text-sm opacity-80">In Queue</span></div>
+                            <div data-lov-id="src/components/QueueDisplay.tsx:26:12" data-lov-name="div"
+                                 data-component-path="src/components/QueueDisplay.tsx" data-component-line="26"
+                                 data-component-file="QueueDisplay.tsx" data-component-name="div"
+                                 data-component-content="%7B%22className%22%3A%22text-lg%20sm%3Atext-xl%20md%3Atext-2xl%20font-bold%22%7D"
+                                 class="text-lg sm:text-xl md:text-2xl font-bold">0
+                            </div>
+                        </div>
+                        <div data-lov-id="src/components/QueueDisplay.tsx:29:10" data-lov-name="div"
+                             data-component-path="src/components/QueueDisplay.tsx" data-component-line="29"
+                             data-component-file="QueueDisplay.tsx" data-component-name="div"
+                             data-component-content="%7B%22className%22%3A%22bg-white%2F5%20backdrop-blur-sm%20rounded-lg%20p-3%20sm%3Ap-4%20border%20border-white%2F10%22%7D"
+                             class="bg-white/5 backdrop-blur-sm rounded-lg p-3 sm:p-4 border border-white/10">
+                            <div data-lov-id="src/components/QueueDisplay.tsx:30:12" data-lov-name="div"
+                                 data-component-path="src/components/QueueDisplay.tsx" data-component-line="30"
+                                 data-component-file="QueueDisplay.tsx" data-component-name="div"
+                                 data-component-content="%7B%22className%22%3A%22flex%20items-center%20justify-center%20gap-1%20sm%3Agap-2%20mb-2%22%7D"
+                                 class="flex items-center justify-center gap-1 sm:gap-2 mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round"
+                                     class="lucide lucide-clock w-4 h-4 sm:w-5 sm:h-5 opacity-80"
+                                     data-lov-id="src/components/QueueDisplay.tsx:31:14" data-lov-name="Clock"
+                                     data-component-path="src/components/QueueDisplay.tsx" data-component-line="31"
+                                     data-component-file="QueueDisplay.tsx" data-component-name="Clock"
+                                     data-component-content="%7B%22className%22%3A%22w-4%20h-4%20sm%3Aw-5%20sm%3Ah-5%20opacity-80%22%7D">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                                <span data-lov-id="src/components/QueueDisplay.tsx:32:14" data-lov-name="span"
+                                      data-component-path="src/components/QueueDisplay.tsx" data-component-line="32"
+                                      data-component-file="QueueDisplay.tsx" data-component-name="span"
+                                      data-component-content="%7B%22text%22%3A%22Est.%20Wait%22%2C%22className%22%3A%22text-xs%20sm%3Atext-sm%20opacity-80%22%7D"
+                                      class="text-xs sm:text-sm opacity-80">Est. Wait</span></div>
+                            <div data-lov-id="src/components/QueueDisplay.tsx:34:12" data-lov-name="div"
+                                 data-component-path="src/components/QueueDisplay.tsx" data-component-line="34"
+                                 data-component-file="QueueDisplay.tsx" data-component-name="div"
+                                 data-component-content="%7B%22text%22%3A%22m%22%2C%22className%22%3A%22text-lg%20sm%3Atext-xl%20md%3Atext-2xl%20font-bold%22%7D"
+                                 class="text-lg sm:text-xl md:text-2xl font-bold">5m
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div data-lov-id="src/pages/CustomerView.tsx:40:8" data-lov-name="div"
+                 data-component-path="src/pages/CustomerView.tsx" data-component-line="40"
+                 data-component-file="CustomerView.tsx" data-component-name="div"
+                 data-component-content="%7B%22className%22%3A%22grid%20gap-4%20sm%3Agap-6%22%7D"
+                 class="grid gap-4 sm:gap-6">
+                <div data-lov-id="src/pages/CustomerView.tsx:53:12" data-lov-name="div"
+                     data-component-path="src/pages/CustomerView.tsx" data-component-line="53"
+                     data-component-file="CustomerView.tsx" data-component-name="div"
+                     data-component-content="%7B%22className%22%3A%22w-full%22%7D" class="w-full">
+                    <div data-lov-id="src/components/CustomerInfoForm.tsx:60:4" data-lov-name="div"
+                         data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="60"
+                         data-component-file="CustomerInfoForm.tsx" data-component-name="div"
+                         data-component-content="%7B%22className%22%3A%22bg-card%20border%20border-border%20rounded-lg%20p-6%20shadow-card%22%7D"
+                         class="bg-card border border-border rounded-lg p-6 shadow-card">
+                        <div data-lov-id="src/components/CustomerInfoForm.tsx:61:6" data-lov-name="div"
+                             data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="61"
+                             data-component-file="CustomerInfoForm.tsx" data-component-name="div"
+                             data-component-content="%7B%22className%22%3A%22space-y-6%22%7D" class="space-y-6">
+                            <div data-lov-id="src/components/CustomerInfoForm.tsx:62:8" data-lov-name="div"
+                                 data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="62"
+                                 data-component-file="CustomerInfoForm.tsx" data-component-name="div"
+                                 data-component-content="%7B%22className%22%3A%22text-center%22%7D" class="text-center">
+                                <h3 data-lov-id="src/components/CustomerInfoForm.tsx:63:10" data-lov-name="h3"
+                                    data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="63"
+                                    data-component-file="CustomerInfoForm.tsx" data-component-name="h3"
+                                    data-component-content="%7B%22text%22%3A%22Book%20Your%20Election%20Appointment%22%2C%22className%22%3A%22text-xl%20font-semibold%22%7D"
+                                    class="text-xl font-semibold">Book Your Election Appointment</h3>
+                                <p data-lov-id="src/components/CustomerInfoForm.tsx:64:10" data-lov-name="p"
+                                   data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="64"
+                                   data-component-file="CustomerInfoForm.tsx" data-component-name="p"
+                                   data-component-content="%7B%22text%22%3A%22Please%20fill%20in%20your%20details%20and%20select%20your%20preferred%20date%20and%20time%22%2C%22className%22%3A%22text-sm%20text-muted-foreground%20mt-2%22%7D"
+                                   class="text-sm text-muted-foreground mt-2">Please fill in your details and select
+                                    your preferred date and time</p></div>
+                            <form data-lov-id="src/components/CustomerInfoForm.tsx:67:8" data-lov-name="form"
+                                  data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="67"
+                                  data-component-file="CustomerInfoForm.tsx" data-component-name="form"
+                                  data-component-content="%7B%22className%22%3A%22space-y-4%22%7D" class="space-y-4">
+                                <div data-lov-id="src/components/CustomerInfoForm.tsx:68:10" data-lov-name="div"
+                                     data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="68"
+                                     data-component-file="CustomerInfoForm.tsx" data-component-name="div"
+                                     data-component-content="%7B%22className%22%3A%22space-y-2%22%7D" class="space-y-2">
+                                    <label data-lov-id="src/components/CustomerInfoForm.tsx:69:12" data-lov-name="Label"
+                                           data-component-path="src/components/CustomerInfoForm.tsx"
+                                           data-component-line="69" data-component-file="CustomerInfoForm.tsx"
+                                           data-component-name="Label"
+                                           data-component-content="%7B%22text%22%3A%22Full%20Name%22%7D"
+                                           class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                           for="name">Full Name</label><input
+                                    data-lov-id="src/components/CustomerInfoForm.tsx:70:12" data-lov-name="Input"
+                                    data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="70"
+                                    data-component-file="CustomerInfoForm.tsx" data-component-name="Input"
+                                    data-component-content="%7B%22placeholder%22%3A%22Enter%20your%20full%20name%22%7D"
+                                    type="text"
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                    id="name" placeholder="Enter your full name" required="" value=""></div>
+                                <div data-lov-id="src/components/CustomerInfoForm.tsx:80:10" data-lov-name="div"
+                                     data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="80"
+                                     data-component-file="CustomerInfoForm.tsx" data-component-name="div"
+                                     data-component-content="%7B%22className%22%3A%22space-y-2%22%7D" class="space-y-2">
+                                    <label data-lov-id="src/components/CustomerInfoForm.tsx:81:12" data-lov-name="Label"
+                                           data-component-path="src/components/CustomerInfoForm.tsx"
+                                           data-component-line="81" data-component-file="CustomerInfoForm.tsx"
+                                           data-component-name="Label"
+                                           data-component-content="%7B%22text%22%3A%22Phone%20Number%22%7D"
+                                           class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                           for="phone">Phone Number</label><input
+                                    data-lov-id="src/components/CustomerInfoForm.tsx:82:12" data-lov-name="Input"
+                                    data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="82"
+                                    data-component-file="CustomerInfoForm.tsx" data-component-name="Input"
+                                    data-component-content="%7B%22placeholder%22%3A%22%2B1%20(555)%20123-4567%22%7D"
+                                    type="tel"
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                    id="phone" placeholder="+1 (555) 123-4567" required="" value=""></div>
+                                <div data-lov-id="src/components/CustomerInfoForm.tsx:92:10" data-lov-name="div"
+                                     data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="92"
+                                     data-component-file="CustomerInfoForm.tsx" data-component-name="div"
+                                     data-component-content="%7B%22className%22%3A%22space-y-2%22%7D" class="space-y-2">
+                                    <label data-lov-id="src/components/CustomerInfoForm.tsx:93:12" data-lov-name="Label"
+                                           data-component-path="src/components/CustomerInfoForm.tsx"
+                                           data-component-line="93" data-component-file="CustomerInfoForm.tsx"
+                                           data-component-name="Label"
+                                           data-component-content="%7B%22text%22%3A%22Email%20Address%22%7D"
+                                           class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                           for="email">Email Address</label><input
+                                    data-lov-id="src/components/CustomerInfoForm.tsx:94:12" data-lov-name="Input"
+                                    data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="94"
+                                    data-component-file="CustomerInfoForm.tsx" data-component-name="Input"
+                                    data-component-content="%7B%22placeholder%22%3A%22your.email%40example.com%22%7D"
+                                    type="email"
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                    id="email" placeholder="your.email@example.com" required="" value=""></div>
+                                <div data-lov-id="src/components/CustomerInfoForm.tsx:104:10" data-lov-name="div"
+                                     data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="104"
+                                     data-component-file="CustomerInfoForm.tsx" data-component-name="div"
+                                     data-component-content="%7B%22className%22%3A%22grid%20grid-cols-1%20md%3Agrid-cols-2%20gap-4%22%7D"
+                                     class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div data-lov-id="src/components/CustomerInfoForm.tsx:105:12" data-lov-name="div"
+                                         data-component-path="src/components/CustomerInfoForm.tsx"
+                                         data-component-line="105" data-component-file="CustomerInfoForm.tsx"
+                                         data-component-name="div"
+                                         data-component-content="%7B%22className%22%3A%22space-y-2%22%7D"
+                                         class="space-y-2"><label
+                                        data-lov-id="src/components/CustomerInfoForm.tsx:106:14" data-lov-name="Label"
+                                        data-component-path="src/components/CustomerInfoForm.tsx"
+                                        data-component-line="106" data-component-file="CustomerInfoForm.tsx"
+                                        data-component-name="Label"
+                                        data-component-content="%7B%22text%22%3A%22Election%20Date%22%7D"
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="appointment-date">Election Date</label>
+                                        <button data-lov-id="src/components/CustomerInfoForm.tsx:109:18"
+                                                data-lov-name="Button"
+                                                data-component-path="src/components/CustomerInfoForm.tsx"
+                                                data-component-line="109" data-component-file="CustomerInfoForm.tsx"
+                                                data-component-name="Button" data-component-content="%7B%7D"
+                                                class="inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start text-left font-normal text-muted-foreground"
+                                                type="button" aria-haspopup="dialog" aria-expanded="false"
+                                                aria-controls="radix-:r0:" data-state="closed">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                 class="lucide lucide-calendar mr-2 h-4 w-4"
+                                                 data-lov-id="src/components/CustomerInfoForm.tsx:116:20"
+                                                 data-lov-name="CalendarIcon"
+                                                 data-component-path="src/components/CustomerInfoForm.tsx"
+                                                 data-component-line="116" data-component-file="CustomerInfoForm.tsx"
+                                                 data-component-name="CalendarIcon"
+                                                 data-component-content="%7B%22className%22%3A%22mr-2%20h-4%20w-4%22%7D">
+                                                <path d="M8 2v4"></path>
+                                                <path d="M16 2v4"></path>
+                                                <rect width="18" height="18" x="3" y="4" rx="2"></rect>
+                                                <path d="M3 10h18"></path>
+                                            </svg>
+                                            <span data-lov-id="src/components/CustomerInfoForm.tsx:117:72"
+                                                  data-lov-name="span"
+                                                  data-component-path="src/components/CustomerInfoForm.tsx"
+                                                  data-component-line="117" data-component-file="CustomerInfoForm.tsx"
+                                                  data-component-name="span"
+                                                  data-component-content="%7B%22text%22%3A%22Select%20election%20date%22%7D">Select election date</span>
+                                        </button>
+                                    </div>
+                                    <div data-lov-id="src/components/CustomerInfoForm.tsx:137:12" data-lov-name="div"
+                                         data-component-path="src/components/CustomerInfoForm.tsx"
+                                         data-component-line="137" data-component-file="CustomerInfoForm.tsx"
+                                         data-component-name="div"
+                                         data-component-content="%7B%22className%22%3A%22space-y-2%22%7D"
+                                         class="space-y-2"><label
+                                        data-lov-id="src/components/CustomerInfoForm.tsx:138:14" data-lov-name="Label"
+                                        data-component-path="src/components/CustomerInfoForm.tsx"
+                                        data-component-line="138" data-component-file="CustomerInfoForm.tsx"
+                                        data-component-name="Label"
+                                        data-component-content="%7B%22text%22%3A%22Time%20Slot%22%7D"
+                                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        for="time-slot">Time Slot</label>
+                                        <button type="button" role="combobox" aria-controls="radix-:r1:"
+                                                aria-expanded="false" aria-autocomplete="none" dir="ltr"
+                                                data-state="closed" data-placeholder=""
+                                                data-lov-id="src/components/CustomerInfoForm.tsx:140:16"
+                                                data-lov-name="SelectTrigger"
+                                                data-component-path="src/components/CustomerInfoForm.tsx"
+                                                data-component-line="140" data-component-file="CustomerInfoForm.tsx"
+                                                data-component-name="SelectTrigger" data-component-content="%7B%7D"
+                                                class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&amp;&gt;span]:line-clamp-1">
+                                            <span data-lov-id="src/components/CustomerInfoForm.tsx:141:18"
+                                                  data-lov-name="SelectValue"
+                                                  data-component-path="src/components/CustomerInfoForm.tsx"
+                                                  data-component-line="141" data-component-file="CustomerInfoForm.tsx"
+                                                  data-component-name="SelectValue"
+                                                  data-component-content="%7B%22placeholder%22%3A%22Select%20time%20slot%22%7D"
+                                                  style="pointer-events: none;">Select time slot</span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                 stroke-linecap="round" stroke-linejoin="round"
+                                                 class="lucide lucide-chevron-down h-4 w-4 opacity-50"
+                                                 data-lov-id="src/components/ui/select.tsx:27:6"
+                                                 data-lov-name="ChevronDown"
+                                                 data-component-path="src/components/ui/select.tsx"
+                                                 data-component-line="27" data-component-file="select.tsx"
+                                                 data-component-name="ChevronDown"
+                                                 data-component-content="%7B%22className%22%3A%22h-4%20w-4%20opacity-50%22%7D"
+                                                 aria-hidden="true">
+                                                <path d="m6 9 6 6 6-6"></path>
+                                            </svg>
+                                        </button>
+                                        <select aria-hidden="true" tabindex="-1"
+                                                style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px); white-space: nowrap; overflow-wrap: normal;">
+                                            <option value="09:00–10:00">09:00–10:00</option>
+                                            <option value="10:00–11:00">10:00–11:00</option>
+                                            <option value="11:00–12:00">11:00–12:00</option>
+                                            <option value="12:00–13:00">12:00–13:00</option>
+                                            <option value="13:00–14:00">13:00–14:00</option>
+                                            <option value="14:00–15:00">14:00–15:00</option>
+                                            <option value="16:00–17:00">16:00–17:00</option>
+                                            <option value="17:00–18:00">17:00–18:00</option>
+                                            <option value="18:00–19:00">18:00–19:00</option>
+                                            <option value="19:00–20:00">19:00–20:00</option>
+                                            <option value="20:00–21:00">20:00–21:00</option>
+                                        </select></div>
+                                </div>
+                                <div data-lov-id="src/components/CustomerInfoForm.tsx:154:10" data-lov-name="div"
+                                     data-component-path="src/components/CustomerInfoForm.tsx" data-component-line="154"
+                                     data-component-file="CustomerInfoForm.tsx" data-component-name="div"
+                                     data-component-content="%7B%22className%22%3A%22flex%20gap-3%20pt-4%22%7D"
+                                     class="flex gap-3 pt-4">
+                                    <button data-lov-id="src/components/CustomerInfoForm.tsx:155:12"
+                                            data-lov-name="Button"
+                                            data-component-path="src/components/CustomerInfoForm.tsx"
+                                            data-component-line="155" data-component-file="CustomerInfoForm.tsx"
+                                            data-component-name="Button"
+                                            data-component-content="%7B%22text%22%3A%22Cancel%22%2C%22className%22%3A%22flex-1%22%7D"
+                                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 flex-1"
+                                            type="button">Cancel
+                                    </button>
+                                    <button data-lov-id="src/components/CustomerInfoForm.tsx:163:12"
+                                            data-lov-name="Button"
+                                            data-component-path="src/components/CustomerInfoForm.tsx"
+                                            data-component-line="163" data-component-file="CustomerInfoForm.tsx"
+                                            data-component-name="Button"
+                                            data-component-content="%7B%22text%22%3A%22Book%20Appointment%22%2C%22className%22%3A%22flex-1%22%7D"
+                                            class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 flex-1"
+                                            type="submit" disabled="">Book Appointment
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="./lineup-now_files/lovable.js.download" type="module"></script>
+
+
+</body>
+</html>

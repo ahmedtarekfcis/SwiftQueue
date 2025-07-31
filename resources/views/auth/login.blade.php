@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: #222D32;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .login-box {
+            margin-top: 75px;
+            height: auto;
+            background: #1A2226;
+            text-align: center;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .login-key {
+            height: 100px;
+            font-size: 80px;
+            line-height: 100px;
+            background: -webkit-linear-gradient(#27EF9F, #0DB8DE);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .login-title {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 2px;
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ECF0F5;
+        }
+
+        .login-form {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        input[type=text] {
+            background-color: #1A2226;
+            border: none;
+            border-bottom: 2px solid #0DB8DE;
+            border-top: 0px;
+            border-radius: 0px;
+            font-weight: bold;
+            outline: 0;
+            margin-bottom: 20px;
+            padding-left: 0px;
+            color: #ECF0F5;
+        }
+
+        input[type=password] {
+            background-color: #1A2226;
+            border: none;
+            border-bottom: 2px solid #0DB8DE;
+            border-top: 0px;
+            border-radius: 0px;
+            font-weight: bold;
+            outline: 0;
+            padding-left: 0px;
+            margin-bottom: 20px;
+            color: #ECF0F5;
+        }
+
+        .form-group {
+            margin-bottom: 40px;
+            outline: 0px;
+        }
+
+        .form-control:focus {
+            border-color: inherit;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-bottom: 2px solid #0DB8DE;
+            outline: 0;
+            background-color: #1A2226;
+            color: #ECF0F5;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0;
+        }
+
+        label {
+            margin-bottom: 0px;
+        }
+
+        .form-control-label {
+            font-size: 10px;
+            color: #6C6C6C;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline-primary {
+            border-color: #0DB8DE;
+            color: #0DB8DE;
+            border-radius: 0px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #0DB8DE;
+            right: 0px;
+        }
+
+        .login-btm {
+            float: left;
+        }
+
+        .login-button {
+            padding-right: 0px;
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        .login-text {
+            text-align: left;
+            padding-left: 0px;
+            color: #A2A4A4;
+        }
+
+        .loginbttm {
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-3 col-md-2"></div>
+        <div class="col-lg-6 col-md-8 login-box">
+            <div class="col-lg-12 login-key" style="margin-top: 2rem">
+                <svg width="100px" height="100px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke="#0DB8DE"
+                        d="M12 1.2A4.8 4.8 0 1 0 16.8 6 4.805 4.805 0 0 0 12 1.2zm0 8.6A3.8 3.8 0 1 1 15.8 6 3.804 3.804 0 0 1 12 9.8zM9 22H4l.01-4.5A5.498 5.498 0 0 1 9.5 12h4.312a5.968 5.968 0 0 0-.462 1H9.5A4.505 4.505 0 0 0 5 17.5V21h4zm10-10.9a3.9 3.9 0 0 0-3.9 3.9 3.86 3.86 0 0 0 .225 1.255L11 20.727V23h2.993l.023-.01L15 22v-1h1.005L17 20v-1h1.004l.186-.187A3.9 3.9 0 1 0 19 11.1zm0 6.9a2.973 2.973 0 0 1-1.223-.267l-.272.267H16v2h-2v1.674l-.408.326H12v-.906l4.419-4.591A2.965 2.965 0 0 1 16 15a3 3 0 1 1 3 3zm.5-5a1.5 1.5 0 1 0 1.5 1.5 1.5 1.5 0 0 0-1.5-1.5zm0 2a.5.5 0 1 1 .5-.5.501.501 0 0 1-.5.5z"/>
+                    <path  fill="none" d="M0 0h24v24H0z"/>
+                </svg>
+            </div>
+            <div class="col-lg-12 login-title">
+                ADMIN Login
+            </div>
+
+            <div class="col-lg-12 login-form">
+                <div class="col-lg-12 login-form">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="form-group">
+                            <label class="form-control-label">USERNAME</label>
+                            <input type="text" name="email" class="form-control" required autofocus>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-control-label">PASSWORD</label>
+                            <input type="password" name="password" class="form-control" required>
+                        </div>
+
+                        <div class="col-lg-12 loginbttm">
+                            <div class="col-lg-6 login-btm login-text">
+                                <!-- Error Message -->
+                                @if($errors->any())
+                                    <div class="alert alert-danger">
+                                        {{ $errors->first() }}
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="col-lg-6 login-btm login-button">
+                                <button type="submit" class="btn btn-outline-primary">LOGIN</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-2"></div>
+        </div>
+    </div>
+
+
+</body>
+</html>
