@@ -7,6 +7,14 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
  && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
 
+# Install system dependencies and PHP extensions
+RUN apt-get update && apt-get install -y \
+    zip unzip curl git libpng-dev libonig-dev libxml2-dev default-mysql-client \
+    libzip-dev libmagickwand-dev --no-install-recommends \
+ && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip \
+ && pecl install imagick \
+ && docker-php-ext-enable imagick \
+
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 

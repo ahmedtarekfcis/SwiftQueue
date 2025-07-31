@@ -42,7 +42,9 @@
                     </div>
                     <div class="stat-item">
                         <div class="stat-label">Queue Number</div>
-                        <div class="stat-number">A{{ str_pad($queueNumber, 3, '0', STR_PAD_LEFT) }}</div>
+                        <div class="stat-number">
+                            A{{ str_pad($queueNumber, 3, '0', STR_PAD_LEFT) }} - {{ $appointment->full_name }}
+                        </div>
                     </div>
                 </div>
             </div>

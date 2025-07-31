@@ -3,15 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Election Appointment System</title>
+    <title>Line Reservation System
+    </title>
     <link rel="stylesheet" href="{{asset('assets')}}/style.css">
 
 </head>
 <body>
 <div class="container">
     <div class="header">
-        <h1>Election Appointment System</h1>
-        <p>Book your appointment to vote in the upcoming election</p>
+        <h1>Line Reservation System</h1>
+        <p>
+            Reserve your spot in line to vote in the upcoming election — without waiting under the sun or rain.
+        </p>
+
     </div>
 
     <!-- Join Queue Card -->
@@ -64,8 +68,13 @@
         <div class="customer-info-form" id="customerInfoForm" style="display: none;">
             <div class="form-content">
                 <div class="form-header">
-                    <h3>Book Your Election Appointment</h3>
-                    <p>Please fill in your details and select your preferred date and time</p>
+                    <h3>
+                        Hold Your Place Without the Wait
+                    </h3>
+                    <p>
+                        Skip standing around. Just check in, save your spot, and relax nearby until it’s
+                        your turn to vote.
+                    </p>
                 </div>
 
                 <form id="appointmentForm" action="{{ route('appointments.store') }}" method="POST">
@@ -124,7 +133,7 @@
             </div>
         </div>
     @endif
-    
+
     <!-- Queue Display -->
     <div class="queue-display">
         <div class="queue-content">

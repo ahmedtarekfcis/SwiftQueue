@@ -11,7 +11,10 @@ Route::post('/login', [\App\Http\Controllers\Auth\LoginController::class, 'login
 Route::post('/logout', [\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
 Route::post('/appointments', [\App\Http\Controllers\AppointmentController::class, 'store'])->name('appointments.store');
-Route::get('/appointments/status', [\App\Http\Controllers\AppointmentController::class, 'status']);
+
+Route::get('/appointments/status/{id}', [\App\Http\Controllers\AppointmentController::class, 'status'])
+    ->name('appointments.status');
+
 Route::get('/appointments/create', [\App\Http\Controllers\AppointmentController::class, 'create']);
 
 Route::prefix('admin/appointments')->name('admin.appointments.')->group(function () {

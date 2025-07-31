@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AppointmentStatusMail;
 use App\Models\SystemSetting;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class AppointmentController extends Controller
 {
@@ -43,26 +46,21 @@ class AppointmentController extends Controller
         $existing = Appointment::where('email', $validated['email'])
             ->orWhere('phone', $validated['phone'])
             ->first();
-
         if ($existing) {
-            $queueNumber = Appointment::where('appointment_date', $existing->appointment_date)
-                ->where('time_slot', $existing->time_slot)
-                ->where('id', '<=', $existing->id)
-                ->count();
 
             return view('appointments.status', [
                 'appointment' => $existing,
-                'queueNumber' => $queueNumber
+                'queueNumber' => $existing->queue_number
             ]);
         }
 
-        $lastQueue = Appointment::where('appointment_date', $validated['appointment_date'])
-            ->where('time_slot', $validated['time_slot'])
-            ->max('queue_number') ?? 0;
+        $lastQueue = \App\Models\Appointment::orderByDesc('queue_number')->value('queue_number') ?? 0;
 
         $validated['queue_number'] = $lastQueue + 1;
 
         $appointment = Appointment::create($validated);
+        // $appointment->generateQrCode($appointment);
+        Mail::to($appointment->email)->send(new AppointmentStatusMail($appointment));
 
         return view('appointments.confirmation', [
             'appointment' => $appointment,
@@ -70,30 +68,30 @@ class AppointmentController extends Controller
         ]);
     }
 
-
-    public function status(Request $request)
+    public function status($queueNumber)
     {
-        $email = $request->input('email');
-        $phone = $request->input('phone');
+        // إزالة أي حروف من بداية الرقم (مثلاً A005 → 005)
+        $numericQueueNumber = preg_replace('/\D/', '', $queueNumber);
 
-        if (!$email && !$phone) {
-            return redirect()->back()->withErrors(['message' => 'Please provide phone or email to check your status.']);
-        }
-
-        $appointment = Appointment::when($email, fn($q) => $q->orWhere('email', $email))
-            ->when($phone, fn($q) => $q->orWhere('phone', $phone))
-            ->latest()
-            ->first();
+        // نحاول نجيب الحجز برقم الانتظار (queue_number)
+        $appointment = Appointment::where('queue_number', $numericQueueNumber)->first();
 
         if (!$appointment) {
-            return redirect()->back()->withErrors(['message' => 'No appointment found with the provided details.']);
+            return redirect()->back()->withErrors(['message' => 'No appointment found with the provided queue number.']);
         }
+        $appointment->generateQrCode();
 
-        $queueNumber = Appointment::where('appointment_date', $appointment->appointment_date)
+        // نحسب رقم الانتظار بالنسبة لباقي الحجوزات بنفس التاريخ والتايم سلوت
+        $positionInQueue = Appointment::where('appointment_date', $appointment->appointment_date)
             ->where('time_slot', $appointment->time_slot)
             ->where('id', '<=', $appointment->id)
             ->count();
 
-        return view('appointments.status', compact('appointment', 'queueNumber'));
+        return view('appointments.status', [
+            'appointment' => $appointment,
+            'queueNumber' => $positionInQueue
+        ]);
     }
+
+
 }
